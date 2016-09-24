@@ -1,7 +1,7 @@
 ---
 
 - name: upload complex configuration
-  template: src=complex.j2 dest=/opt/sge/complex.conf
+  template: src=roles/sge/templates/complex.j2 dest=/opt/sge/complex.conf
 
 - name: configure SGE complex
   shell: /opt/sge/bin/linux-x64/qconf -Mc /opt/sge/complex.conf
@@ -9,7 +9,7 @@
     SGE_ROOT: /opt/sge
 
 - name: upload cluster configuration
-  template: src=cluster.j2 dest=/opt/sge/cluster.conf
+  template: src=roles/sge/templates/cluster.j2 dest=/opt/sge/cluster.conf
 
 - name: configure SGE cluster
   shell: /opt/sge/bin/linux-x64/qconf -Msconf /opt/sge/cluster.conf

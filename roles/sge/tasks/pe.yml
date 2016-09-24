@@ -1,7 +1,7 @@
 ---
 
 - name: Add configuration file
-  template: src=pe.j2 dest=/opt/sge/pe.conf
+  template: src=roles/sge/templates/pe.j2 dest=/opt/sge/pe.conf
 
 - name: Install Parallel Env
   shell: 

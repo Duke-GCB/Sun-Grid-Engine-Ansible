@@ -14,27 +14,33 @@
 # NFS
 - hosts: all
   sudo: yes
-  roles: 
+  roles:
    - role: nfs
 
-#- hosts: masters
+- hosts: masters
   sudo: yes
   tasks:
-   - include: roles/nfs/tasks/exports.yml
+    - include: roles/nfs/tasks/exports.yml
+  tags:
+    - master
 
-#- hosts: slaves
+- hosts: slaves
   sudo: yes
   tasks:
-   - include: roles/nfs/tasks/mount.yml
+    - include: roles/nfs/tasks/mount.yml
+  tags:
+    - compute
 
 # Sun Grid Engine
 # Install SGE Exec, Submit, ans Admin Services
 - hosts: master
   sudo: yes
-  roles: 
+  roles:
    - role: sge
   tasks:
-   - include: roles/sge/tasks/master.yml
+    - include: roles/sge/tasks/master.yml
+  tags:
+    - master
 
 - hosts: all
   sudo: yes
@@ -45,9 +51,11 @@
 - hosts: master
   sudo: yes
   tasks:
-   - include: roles/sge/tasks/pe.yml
+    - include: roles/sge/tasks/pe.yml
+  tags:
+    - master
 
-# configure SGE Complex and Cluster 
+# configure SGE Complex and Cluster
 - hosts: all
   sudo: yes
   tasks:
